@@ -8,6 +8,11 @@ pygame.init()
 
 
 class DrawInfo:
+    """
+    The class is used to save screen properties 
+    and also the list and block width and height
+    """
+    # Define colors
     BLACK = 0, 0, 0
     WHITE = 255, 255, 255
     GREEN = 0, 255, 0
@@ -18,7 +23,8 @@ class DrawInfo:
         (160, 160, 160),
         (192, 192, 192),
     ]
-
+    
+    # Define fonts and pads
     FONT = pygame.font.SysFont("comicsans", 30)
     LARGE_FONT = pygame.font.SysFont("comicsans", 40)
     TOP_PAD = 200
@@ -29,26 +35,30 @@ class DrawInfo:
     lst = []
 
     def __init__(self, width, height, lst):
+        # Define width and height of screen 
         self.width = width
         self.height = height
 
         self.sorting_name = ""
         self.ascending = True
-
+        
+        # Create screen and fill backgrounf in white
         self.window = pygame.display.set_mode((self.width, self.height))
         self.window.fill(self.WHITE)
 
         self.set_list(lst)
 
     def set_list(self, lst):
+        """
+        This function used to define our unsorted list, 
+        block width and height for that we can easily draw
+        the list on screen
+        """
         self.lst = lst
         self.block_width = (self.width - self.SIDE_PAD) / len(lst)
         self.block_height = round((self.height - self.TOP_PAD) // (max(lst) - min(lst)))
-        print("block width: ", self.block_width)
-        print("block height: ", self.block_height)
+     
 
-
-# Complete
 def draw(draw_info: DrawInfo):
     # Clear screen
     draw_info.window.fill(draw_info.WHITE)
@@ -66,7 +76,8 @@ def draw(draw_info: DrawInfo):
         str_ascending = "Ascending"
     else:
         str_ascending = "Descending"
-
+    
+    # Draw current sorting algorithm and ascending
     current = draw_info.FONT.render("current sort: {} Ascending: {} ".format(draw_info.sorting_name, str_ascending), True, draw_info.RED)
     draw_info.window.blit(current, (draw_info.width / 2 - current.get_width() / 2, 65))
 
@@ -77,7 +88,6 @@ def draw(draw_info: DrawInfo):
     pygame.display.update()
 
 
-# Complete
 def draw_list(draw_info: DrawInfo, color_positions={}):
 
     # Clear background of list
@@ -99,11 +109,7 @@ def draw_list(draw_info: DrawInfo, color_positions={}):
         if i in color_positions:
             color = color_positions[i]
 
-        # screen width = 800
-        # screen height = 600
-        # pygame.display.rect(window, color, (start_x, start_y, width_of_rect, height_of_rect))
-        pygame.draw.rect(draw_info.window, color,
-                         (start_block_x, start_block_y, draw_info.block_width, val * draw_info.block_height))
+        pygame.draw.rect(draw_info.window, color, (start_block_x, start_block_y, draw_info.block_width, val * draw_info.block_height))
 
     pygame.display.update()
 
@@ -127,9 +133,12 @@ def main():
     max_val = 200
     screen_width = 1200
     screen_height = 700
-
+     
+    # create random list
     lst = generate_new_list(n, min_val, max_val)
+    # create DrawInfo object
     draw_info = DrawInfo(screen_width, screen_height, lst)
+    # draw screen
     draw(draw_info)
 
     sorting_algorithm = None
