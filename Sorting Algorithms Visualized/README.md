@@ -9,8 +9,10 @@
     <dt> &emsp; Stability &emsp; &emsp; &emsp; &emsp; Yes </dt>
   </dl>
   
-https://user-images.githubusercontent.com/51852958/160566368-03074bf4-1d06-486e-be71-46e455e32abf.mp4
   
+<img src="https://user-images.githubusercontent.com/51852958/160881814-7aa7a8ab-6d97-4f68-b591-6e32987837fb.gif" 
+     width="500" height="250"/>
+
 <h3>Insertion Sort</h3>
   <h4> &emsp; Complexity:<h4>
   <dl>
