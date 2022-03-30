@@ -24,8 +24,11 @@
     <dt> &emsp; Stability &emsp; &emsp; &emsp; &emsp; Yes </dt>
   </dl>
     
-https://user-images.githubusercontent.com/51852958/160566793-871c7c74-bbcb-46c2-80bd-06ce2a4a0edd.mp4
+    
+<img src="https://user-images.githubusercontent.com/51852958/160883775-8d440fc8-6221-4630-8991-2b3ae5b5a7a1.gif" 
+     width="500" height="250"/>
 
+    
 <h3>Merge Sort</h3>
   <h4> &emsp; Complexity:<h4>
   <dl>
@@ -37,7 +40,10 @@ https://user-images.githubusercontent.com/51852958/160566793-871c7c74-bbcb-46c2-
     <dt> &emsp; Stability &emsp; &emsp; &emsp; &emsp; Yes </dt>
   </dl>
 
-https://user-images.githubusercontent.com/51852958/160567172-dd488f98-ea42-49fb-9cf0-00cb9125a28d.mp4
+    
+<img src="https://user-images.githubusercontent.com/51852958/160884641-992739fc-acae-4d4a-9c84-9b7d3aacd258.gif" 
+     width="500" height="250"/>
+
 
 <h3>Selection Sort</h3>
   <h4> &emsp; Complexity:<h4>
@@ -50,5 +56,8 @@ https://user-images.githubusercontent.com/51852958/160567172-dd488f98-ea42-49fb-
     <dt> &emsp; Stability &emsp; &emsp; &emsp; &emsp; No </dt>
   </dl>
     
-https://user-images.githubusercontent.com/51852958/160567760-672506dc-5e0d-49b3-87e3-73b5a694b8e9.mp4
+    
+<img src="https://user-images.githubusercontent.com/51852958/160885059-a7bc735c-85ed-42e6-9bcd-6a40f276e3a9.gif" 
+     width="500" height="250"/>
+    
 
