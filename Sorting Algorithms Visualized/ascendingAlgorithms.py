@@ -1,7 +1,6 @@
 import main
 
 
-# Complete
 def ascending_bubble_sort(draw_info: main.DrawInfo):
     lst = draw_info.lst
 
@@ -15,8 +14,70 @@ def ascending_bubble_sort(draw_info: main.DrawInfo):
                 main.draw_list(draw_info, {j: draw_info.GREEN, j + 1: draw_info.RED})
                 yield True
 
+                
+def heapify(draw_info: main.DrawInfo, arr, n, i):
 
-# Complete
+    # Find largest among root and children
+    largest = i
+    l = 2 * i + 1
+    r = 2 * i + 2
+
+    if l < n and r < n:
+        main.draw_list(draw_info, {largest: draw_info.GREEN, l: draw_info.RED, r: draw_info.BLUE})
+    elif l < n <= r:
+        main.draw_list(draw_info, {largest: draw_info.GREEN, l: draw_info.RED})
+    elif r < n <= l:
+        main.draw_list(draw_info, {largest: draw_info.GREEN, r: draw_info.BLUE})
+    else:
+        main.draw_list(draw_info, {largest: draw_info.GREEN})
+    yield True
+
+    if l < n and arr[i] < arr[l]:
+        largest = l
+
+    if r < n and arr[largest] < arr[r]:
+        largest = r
+
+    # If root is not largest, swap with largest and continue heapifying
+    if largest != i:
+
+        main.draw_list(draw_info, {largest: draw_info.GREEN, l: draw_info.RED, r: draw_info.BLUE})
+        yield True
+
+        # Swap
+        arr[i], arr[largest] = arr[largest], arr[i]
+
+        main.draw_list(draw_info, {largest: draw_info.GREEN, l: draw_info.RED, r: draw_info.BLUE})
+        yield True
+
+        yield from heapify(draw_info, arr, n, largest)
+
+
+def ascending_heap_sort(draw_info: main.DrawInfo):
+
+    arr = draw_info.lst
+    n = len(arr)
+
+    # Build max heap
+    for i in range(n // 2, -1, -1):
+        yield from heapify(draw_info, arr, n, i)
+
+    for i in range(n - 1, 0, -1):
+        # Swap
+        main.draw_list(draw_info, {0: draw_info.GREEN, i: draw_info.RED})
+        yield True
+
+        arr[i], arr[0] = arr[0], arr[i]
+
+        main.draw_list(draw_info, {0: draw_info.GREEN, i: draw_info.RED})
+        yield True
+
+        # Heapify root element
+        yield from heapify(draw_info, arr, i, 0)
+
+    yield True
+
+    
 def ascending_insertion_sort(draw_info: main.DrawInfo):
 
     arr = draw_info.lst
@@ -53,7 +114,6 @@ def ascending_selection_sort(draw_info: main.DrawInfo):
         arr[i], arr[min_index] = arr[min_index], arr[i]
 
 
-# Complete
 def ascending_mergesort(draw_info: main.DrawInfo, arr, p_mid_arr):
 
     if len(arr) > 1:
