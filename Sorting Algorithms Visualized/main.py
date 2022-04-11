@@ -8,11 +8,6 @@ pygame.init()
 
 
 class DrawInfo:
-    """
-    The class is used to save screen properties 
-    and also the list and block width and height
-    """
-    # Define colors
     BLACK = 0, 0, 0
     WHITE = 255, 255, 255
     GREEN = 0, 255, 0
@@ -23,8 +18,7 @@ class DrawInfo:
         (160, 160, 160),
         (192, 192, 192),
     ]
-    
-    # Define fonts and pads
+
     FONT = pygame.font.SysFont("comicsans", 30)
     LARGE_FONT = pygame.font.SysFont("comicsans", 40)
     TOP_PAD = 200
@@ -35,30 +29,26 @@ class DrawInfo:
     lst = []
 
     def __init__(self, width, height, lst):
-        # Define width and height of screen 
         self.width = width
         self.height = height
 
         self.sorting_name = ""
         self.ascending = True
-        
-        # Create screen and fill backgrounf in white
+
         self.window = pygame.display.set_mode((self.width, self.height))
         self.window.fill(self.WHITE)
 
         self.set_list(lst)
 
     def set_list(self, lst):
-        """
-        This function used to define our unsorted list, 
-        block width and height for that we can easily draw
-        the list on screen
-        """
         self.lst = lst
         self.block_width = (self.width - self.SIDE_PAD) / len(lst)
         self.block_height = round((self.height - self.TOP_PAD) // (max(lst) - min(lst)))
-     
+        print("block width: ", self.block_width)
+        print("block height: ", self.block_height)
 
+
+# Complete
 def draw(draw_info: DrawInfo):
     # Clear screen
     draw_info.window.fill(draw_info.WHITE)
@@ -68,7 +58,7 @@ def draw(draw_info: DrawInfo):
     draw_info.window.blit(controls, (draw_info.width / 2 - controls.get_width() / 2, 5))
 
     # Draw sorting options
-    sorting = draw_info.FONT.render("B - Bubble | I - Insertion | M - Merge | S - Selection", True, draw_info.BLACK)
+    sorting = draw_info.FONT.render("B - Bubble | H - Heap | I - Insertion | M - Merge | S - Selection", True, draw_info.BLACK)
     draw_info.window.blit(sorting, (draw_info.width / 2 - sorting.get_width() / 2, 35))
 
     # Draw sort and ascending
@@ -76,8 +66,7 @@ def draw(draw_info: DrawInfo):
         str_ascending = "Ascending"
     else:
         str_ascending = "Descending"
-    
-    # Draw current sorting algorithm and ascending
+
     current = draw_info.FONT.render("current sort: {} Ascending: {} ".format(draw_info.sorting_name, str_ascending), True, draw_info.RED)
     draw_info.window.blit(current, (draw_info.width / 2 - current.get_width() / 2, 65))
 
@@ -109,7 +98,11 @@ def draw_list(draw_info: DrawInfo, color_positions={}):
         if i in color_positions:
             color = color_positions[i]
 
-        pygame.draw.rect(draw_info.window, color, (start_block_x, start_block_y, draw_info.block_width, val * draw_info.block_height))
+        # screen width = 800
+        # screen height = 600
+        # pygame.display.rect(window, color, (start_x, start_y, width_of_rect, height_of_rect))
+        pygame.draw.rect(draw_info.window, color,
+                         (start_block_x, start_block_y, draw_info.block_width, val * draw_info.block_height))
 
     pygame.display.update()
 
@@ -128,17 +121,14 @@ def main():
     run = True
     sorting = False
 
-    n = 100
+    n = 50
     min_val = 10
     max_val = 200
-    screen_width = 1200
-    screen_height = 700
-     
-    # create random list
+    screen_width = 1400
+    screen_height = 900
+
     lst = generate_new_list(n, min_val, max_val)
-    # create DrawInfo object
     draw_info = DrawInfo(screen_width, screen_height, lst)
-    # draw screen
     draw(draw_info)
 
     sorting_algorithm = None
@@ -148,6 +138,7 @@ def main():
         clock.tick(60)
         ascending = draw_info.ascending
 
+        # Draw list after sorting
         if draw_info.lst == sorted(draw_info.lst) or draw_info.lst == list(reversed(sorted(draw_info.lst))):
             draw(draw_info)
 
@@ -192,6 +183,15 @@ def main():
                         sorting_algorithm = ascendingAlgorithms.ascending_bubble_sort(draw_info)
                     else:
                         sorting_algorithm = descendingAlgorithms.descending_bubble_sort(draw_info)
+
+                # Heap
+                elif event.key == pygame.K_h and not sorting:
+                    sorting = True
+                    draw_info.sorting_name = "Heap sort"
+                    if ascending:
+                        sorting_algorithm = ascendingAlgorithms.ascending_heap_sort(draw_info)
+                    else:
+                        sorting_algorithm = descendingAlgorithms.descending_heap_sort(draw_info)
 
                 # Insertion
                 elif event.key == pygame.K_i and not sorting:
