@@ -16,15 +16,11 @@
     <th> Selection </th>
   </tr>
   <tr>
-    <td> <img src="https://user-images.githubusercontent.com/51852958/160881814-7aa7a8ab-6d97-4f68-b591-6e32987837fb.gif" width="200" height="200"/> </td>
-    <td> heap </td>
-    <td> <img src="https://user-images.githubusercontent.com/51852958/160883775-8d440fc8-6221-4630-8991-2b3ae5b5a7a1.gif" width="200" height="200"/> </td>
-    <td> <img src="https://user-images.githubusercontent.com/51852958/160884641-992739fc-acae-4d4a-9c84-9b7d3aacd258.gif" width="200" height="200"/> </td>
-    <td> <img src="https://user-images.githubusercontent.com/51852958/160885059-a7bc735c-85ed-42e6-9bcd-6a40f276e3a9.gif" width="200" height="200"/> </td>
+    <td> <img src="https://user-images.githubusercontent.com/51852958/163221797-f59d73ba-01c1-4e4d-9a35-9b881be77fae.gif" width="200" height="150"/> </td>
+    <td> <img src="https://user-images.githubusercontent.com/51852958/163219225-72ca90ae-50b9-487b-932a-3720f1d33b64.gif" width="200" height="150"/> </td>
+    <td> <img src="https://user-images.githubusercontent.com/51852958/160883775-8d440fc8-6221-4630-8991-2b3ae5b5a7a1.gif" width="200" height="150"/> </td>
+    <td> <img src="https://user-images.githubusercontent.com/51852958/160884641-992739fc-acae-4d4a-9c84-9b7d3aacd258.gif" width="200" height="150"/> </td>
+    <td> <img src="https://user-images.githubusercontent.com/51852958/160885059-a7bc735c-85ed-42e6-9bcd-6a40f276e3a9.gif" width="200" height="150"/> </td>
   </tr>
 </table>
    
-    
- 
-    
-
