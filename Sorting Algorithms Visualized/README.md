@@ -6,6 +6,11 @@
 | Space           | O(1)   | O(1)       | O(1)      | O(n)      | O(1)      |
 | Stability       | Yes    | No         | Yes       | Yes       | No        |
 
+<h3 align="center"> Start window: </h3>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/51852958/163251852-00ef1178-4f80-402b-8899-89ae9098462b.png" width="700" height="500"/> 
+</p>
+
 <h3> Ascending sorts: </h3>
 <table>
   <tr>
