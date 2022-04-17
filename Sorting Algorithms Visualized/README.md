@@ -28,3 +28,21 @@
     <td> <img src="https://user-images.githubusercontent.com/51852958/163247905-f848ac96-6931-41ad-a412-ecadd691c8cc.gif" width="200" height="150"/> </td>
   </tr>
 </table>
+
+<h3> Descending sorts: </h3>
+<table>
+  <tr>
+    <th> Bubble </th>
+    <th> Heap </th>
+    <th> Insertion </th>
+    <th> Merge </th>
+    <th> Selection </th>
+  </tr>
+  <tr>
+    <td> <img src="https://user-images.githubusercontent.com/51852958/163713855-2c8f4c98-5d09-4144-a053-55d658547e9b.gif" width="200" height="150"/> </td>
+    <td> <img src="https://user-images.githubusercontent.com/51852958/163714029-bb7bbe51-a5f0-4115-9d1c-60cf2010262f.gif" width="200" height="150"/> </td>
+    <td> <img src="https://user-images.githubusercontent.com/51852958/163714138-e1670503-b741-4eaf-9358-7684068bcbfb.gif" width="200" height="150"/> </td>
+    <td> <img src="https://user-images.githubusercontent.com/51852958/163714229-b8f17c6b-1074-4c24-a60e-31ba4e75cefe.gif" width="200" height="150"/> </td>
+    <td> <img src="https://user-images.githubusercontent.com/51852958/163714234-89578631-9d29-4f85-82dd-9b8bfe48a68a.gif" width="200" height="150"/> </td>
+  </tr>
+
