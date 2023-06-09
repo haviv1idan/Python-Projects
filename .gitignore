@@ -1,0 +1,7 @@
+venv
+.idea
+
+/Grocery/src/__pycache__
+/Grocery/geckodriver.log
+/Grocery/products.txt
+/Grocery/products_details.json
