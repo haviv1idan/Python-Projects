@@ -19,36 +19,30 @@ class Product:
         return {"name": self.name, "id": self.id, "shops": self.shops, "online_shops": self.online_shops}
 
 
-class ProductsPool:
-
-    def __init__(self):
-        self.products: dict[str, dict[str, str]] = {}
-
-
 class WebPage:
     """
     This class represent web page object per product
     """
 
-    def __init__(self, browser, url: str, product: Product = None):
+    def __init__(self, browser, url: str):
+
         self.browser = browser
         self.url: str = url
-        self.product: Product = product
 
-    def fill_product_filter_field(self, field_type: By.NAME | By.ID, field_name: str, value: str):
+    def fill_product_filter_field(self, field_type: str, field_name: str, value: str):
         # Fill the searching field
         product_indicator = self.browser.find_element(field_type, field_name)
         product_indicator.send_keys("")
         product_indicator.send_keys(value)
 
-    def get_all_tables(self) -> list[bs4.element.Tag]:
+    def get_all_tables(self, product_id: str) -> list[bs4.element.Tag]:
         """
         find all tables in the given browser
         :return: list of all tables in the given page
         """
 
         # Fill the searching field
-        self.fill_product_filter_field(By.NAME, "product_name_or_barcode", self.product.id)
+        self.fill_product_filter_field(By.NAME, "product_name_or_barcode", product_id)
 
         # Click on the search button
         self.browser.find_element(By.ID, "get_compare_results_button").click()

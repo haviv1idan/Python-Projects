@@ -52,9 +52,13 @@ def print_table(table):
 
 
 def get_products_id_from_file():
-    with open("products.txt", 'r') as file:
-        products = file.readlines()
-    return products
+    try:
+        with open("products.txt", 'r') as file:
+            products = file.readlines()
+        return products
+    except FileNotFoundError as e:
+        logger.error(e)
+        return None
 
 
 def write_products_to_file(products):
@@ -62,22 +66,33 @@ def write_products_to_file(products):
         file.write(json.dumps(products))
 
 
-def get_all_products():
+def get_all_products() -> None:
+    """
+    Get for each product all stores and prices from website chp.co.il.
+    for each product, store the stores and prices in dictionary.
+    The dictionary contains the product name and the list of stores and prices.
+    :return: None
+    """
 
     # Clear file
-    with open(FILENAME, 'w') as file:
+    with open(PRODUCTS_DETAILS, 'w') as file:
         file.write("")
 
     browser = webdriver.Firefox()
     browser.get(WEBSITE)
     web_page = WebPage(browser, WEBSITE)
     web_page.fill_product_filter_field(By.NAME, "shopping_address", SHOPPING_AREA)
+    
+    if not get_products_id_from_file():
+        browser.quit()
 
-    products_pool = ProductsPool()
-    for product_id in get_products_id_from_file():
+    products_ids = get_products_id_from_file()
+    products_dict: dict[str, Product] = {}
+    
+    for product_id in products_ids:
 
         product = Product(product_id)
-        tables_list = web_page.get_all_tables()
+        tables_list = web_page.get_all_tables(product_id)
 
         for table in tables_list:
             if table.attrs.get("style") == "display: inline-block":
@@ -100,6 +115,7 @@ def get_all_products():
             for row_index, tr in enumerate(body_content):
                 row_content = {}
                 for td_index, td in enumerate(tr.find_all("td")):
+
                     if headers[td_index] != "מבצע":
                         row_content[headers[td_index]] = td.text
                         continue
@@ -114,18 +130,11 @@ def get_all_products():
 
             setattr(product, "{}shops".format("online_" if len(headers) == 5 else ""), table_json)
 
-        products_pool.products[product.name] = product.__str__()
+        products_dict[product.name] = product.__str__()
         logger.info(f"adding {product.name} to products.\nproduct details:\n{product.__str__()}")
 
-    print(f"products: {json.dumps(products_pool.products)}")
+    print(f"products: {json.dumps(products_dict)}")
 
-    write_products_to_file(products_pool.products)
+    write_products_to_file(products_dict)
 
     browser.quit()
-
-
-# try:
-#     if os.path.getsize(PRODUCTS_DETAILS) == 0:
-#         get_all_products()
-# except FileNotFoundError:
-#     get_all_products()
